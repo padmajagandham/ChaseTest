@@ -1,11 +1,11 @@
 package com.test.apiservice.utils;
-import io.cucumber.java.After;
-import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Hooks {
 
@@ -13,7 +13,9 @@ public class Hooks {
 
     @Before
     public void setup(Scenario scenario){
-//        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
+        Logger logger = LoggerFactory.getLogger(Hooks.class);
+        if(logger.isDebugEnabled())
+            RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
         sc = scenario;
     }
 

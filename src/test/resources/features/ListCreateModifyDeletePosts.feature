@@ -3,9 +3,19 @@ Feature: Create/update/delete/get a Post
 
 #  Assumptions: From the response of GET /posts or GET /posts/<postId>, it can be inferred that a post has a reference to unique userId's
 #  so it can be safely assumed that a user has to exist in the Social Networking site to make a post
+#  This scenario is written to fetch data dynamically at run time and perform the test
   Scenario: Verify a user can submit a post successfully with valid data
     Given a user exists on the social networking site
     When a user submits a post with random title and body
+    Then the post must be created successfully
+
+#  Scenario can also be written to make use of static data
+#  in this case the required data for the test has to be setup in "Before" hooks or a test env pre-populated with definitive set of data
+#  Example of a test with static data
+  Scenario: Verify a user can submit a post successfully with valid data as specified in the test
+    When a user submits a post with below data
+      | userId | title           | body           |
+      | 1      | Test some title | Test some body |
     Then the post must be created successfully
 
 #  verifying PUT, can also be modified to verify PATCH
@@ -30,7 +40,7 @@ Feature: Create/update/delete/get a Post
   Scenario: Verify all posts of a user are correctly returned when queried by userId
     Given a user exists on the social networking site
     When the post is queried by userId
-    Then the all posts made by the user are returned successfully
+    Then all posts made by the user are returned successfully
 
   Scenario: Verify all comments for a specific post can be retrieved using /posts/<postId>/comments endpoint
     Given a user exists on the social networking site
@@ -59,13 +69,13 @@ Feature: Create/update/delete/get a Post
       | TestCase                          | userId | title              | body            |
       | Invalid userId                    | 100    | fghhfghfgh hfghfgh | gffghh fgdhgfgh |
       | No user Id field                  |        | fghg               | fghfgh          |
-      | userId is a String instead of int |        |                    |                 |
+      | userId is a String instead of int | abc    |                    |                 |
+#      tried with a string with 2000 character long , was still able to submit. So depending on the specification below data can be set.
       | title is > allowed char limit     |        |                    |                 |
       | body is > allowed char limit      |        |                    |                 |
 
-
 # This cannot be automated currently, as the API does not validate the user Id input and accepts any value given
-#  Scenario: User that does not exist on the social networking site, must not be allowed to make a post
+#  Scenario: User that does not exist on the social networking site, must not be allowed to make a post i.e. a post must not be accepted with a invalid user id
 
 #  API does not currently support this
 #  Scenario: Verify a user cannot delete or modify other users posts i.e. a PUT or PATCH request must not be allowed to modify userId of a post

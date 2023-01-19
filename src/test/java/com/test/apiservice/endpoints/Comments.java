@@ -17,10 +17,10 @@ public class Comments {
         return given(rs).body(req).post(comments);
     }
 
-//    public Response getListOfCommentsForAPost(RequestSpecification rs){
-//
-//    }
-//
+    public Response getListOfCommentsForAPost(RequestSpecification rs, int postId){
+        return given(rs).get(allCommentsForAPost.replace("<postId>",String.valueOf(postId)));
+    }
+
     public Response getAllComments(RequestSpecification rs){
         return given(rs).get(comments);
     }

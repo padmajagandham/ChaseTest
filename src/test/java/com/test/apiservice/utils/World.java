@@ -5,6 +5,7 @@ import com.test.apiservice.models.UserDataModel;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import lombok.Data;
 
@@ -15,7 +16,7 @@ public class World {
     private RequestSpecification rs;
     private UserDataModel userDataModel;
     private PostDataModel postDataModel;
-//    Public Comment comment;
+    private Response postResponse;
 
     public World(){
 

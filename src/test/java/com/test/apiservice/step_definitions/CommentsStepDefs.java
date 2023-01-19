@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.test.apiservice.endpoints.Comments;
 import com.test.apiservice.endpoints.Users;
 import com.test.apiservice.models.CommentDataModel;
-import com.test.apiservice.utils.Hooks;
 import com.test.apiservice.utils.World;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,7 +16,6 @@ import static org.junit.Assert.assertNotNull;
 public class CommentsStepDefs {
 
     World world;
-    Users usersEndpoint = new Users();
     Gson gson = new Gson();
     Comments commentsEndPoint = new Comments();
     CommentDataModel commentRequest;
@@ -55,7 +53,7 @@ public class CommentsStepDefs {
         }
 
         if(!flag.equals("returned") && !flag.equals("deleted")){
-//      ToDo:Json Schema validation
+//      Json Schema validation is recommended to be done at this stage if available
             assertNotNull(comment.getId());
             assertEquals(commentRequest.getBody(), comment.getBody());
             assertEquals(commentRequest.getEmail(), comment.getEmail());
@@ -66,5 +64,10 @@ public class CommentsStepDefs {
         }
     }
 
+    @When("comments endpoint is queried by above post id")
+    public void comments_endpoint_is_queried_by_above_post_id() {
+        commentResponse = commentsEndPoint.getListOfCommentsForAPost(world.getRs(),world.getPostDataModel().getId());
+        world.setPostResponse(commentResponse);
+    }
 
 }

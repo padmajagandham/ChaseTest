@@ -48,18 +48,18 @@ Made use of cucumber-picocontainers for state sharing between different step def
 ******************************
 Instructions to build and run:
 ******************************
--1. Loglevel can be altered from simplelogger.properties and can be defined to direct it to SystemOut or to a file.
+1. Loglevel can be altered from simplelogger.properties and can be defined to direct it to SystemOut or to a file.
      Currently set to INFO and directed to SystemOut.
--3. unzip the project or download from GIThub link here : 
--4. If running from an IDE, import the project to the IDE.
+2. unzip the project or download from GIThub link here : 
+3. If running from an IDE, import the project to the IDE.
         - go to the terminal [if using a IDE like IntelliJ which supports terminal]
--5. If running from outside an IDE, from command prompt cd to the folder where the project is unzipped. change directory i.e. cd to ChaseTest.
--6. Once step 4 or 5 is done. Run below commands in sequence
+4. If running from outside an IDE, from command prompt cd to the folder where the project is unzipped. change directory i.e. cd to ChaseTest.
+5. Once step 3 or 4 is done. Run below commands in sequence
         - mvn clean
         - mvn compile
         - mvn test -D "baseURL=https://jsonplaceholder.typicode.com" 
     - The reports will be generated in target/cucumber-html-reports path relative to the project directory.
--7. Open 'overview-features.html' in above folder to navigate through the features and scenario results.
+6. Open 'overview-features.html' in above folder to navigate through the features and scenario results.
 
 
 ******************************

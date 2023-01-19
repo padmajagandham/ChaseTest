@@ -1,4 +1,4 @@
-@regression
+@regression @focus
 Feature: Create/update/delete/get a Comments
 
 #  There is no reference to userId in comments, so inferring that any user even not registered on the social networking site will be able to comment
@@ -13,7 +13,7 @@ Feature: Create/update/delete/get a Comments
     Given a user exists on the social networking site
     And has already posted on the social networking site
     When comments endpoint is queried by above post id
-    Then all the comments related to the post are returned
+    Then all the comments for selected post are returned successfully
 
 #  Scenario: Verify a specific comment is returned when queried by commentId
 #  Scenario: Verify HTTP 404 Not Found response is returned when trying to retrieve using invalid commentId

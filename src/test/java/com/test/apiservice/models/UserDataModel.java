@@ -4,6 +4,7 @@ import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 @Data
+@Builder
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class UserDataModel {
     private Integer id;
