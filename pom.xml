@@ -84,7 +84,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <projectName>Hotel-Booking</projectName>
+                            <projectName>Simple-Social-Network-Service</projectName>
                             <!-- output directory for the generated report -->
                             <outputDirectory>${project.build.directory}</outputDirectory>
                             <inputDirectory>${project.build.directory}/jsonReports</inputDirectory>

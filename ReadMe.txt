@@ -24,7 +24,7 @@ Below is the skeleton of framework folder structure
 		|								|
 		|								|
 		|								--endpoints : List of classes that encompass methods to send and receive from different api endpoints 
-		|								--models : Data models for JSON request and responses. As the request and response objects in this case do not differe much used same data model for request and response. 
+		|								--models : Data models for JSON request and responses. As the request and response objects in this case do not differ much used same data model for request and response.
 		|											Lombok annotations are used to mask or remove fields from request when not required.
 		|								--step_definitions : List of cucumber step definitions 
 		|								--utils : Hooks , some helper methods
