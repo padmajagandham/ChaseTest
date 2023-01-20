@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 public class Users {
     private String users = "/users";
     private String allPostsForAUser = "/users/<userId>/posts";
-    Gson gson = new Gson();
+    private String specificUser = "/users/<userId>";
 
     public Response getAllUsers(RequestSpecification rs){
         return given(rs).get(users);
@@ -17,5 +17,9 @@ public class Users {
 
     public Response getAllPostsMadeByUser(RequestSpecification rs, int userId){
         return given(rs).get(allPostsForAUser.replace("<userId>",String.valueOf(userId)));
+    }
+
+    public Response getASpecificUser(RequestSpecification rs, int userId){
+        return given(rs).get(specificUser.replace("<userId>",String.valueOf(userId)));
     }
 }

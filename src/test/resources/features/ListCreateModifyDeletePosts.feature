@@ -19,7 +19,6 @@ Feature: Create/update/delete/get a Post
     Then the post must be created successfully
 
 #  verifying PUT, PUT replaces the entire resource
-  @focus
   Scenario: Verify a user can modify an existing post made by him
     Given a user exists on the social networking site
     And has already posted on the social networking site

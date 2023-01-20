@@ -24,7 +24,7 @@ public class World {
 
         //Set up the request specification here
         this.rs = new RequestSpecBuilder()
-                .setBaseUri(System.getProperty("baseURL")) //Read this from a command line
+                .setBaseUri((System.getProperty("baseURL") != null)?System.getProperty("baseURL"):"https://jsonplaceholder.typicode.com") //Read this from a command line
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
                 .build();
