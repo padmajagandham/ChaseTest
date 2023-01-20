@@ -2,6 +2,9 @@ This is a Simple framework using Java and Cucumber.
 Gherkin syntax is used to define cucumber feature files, they are concise and readable by any business users. They are also parameterized so some values might also be set at run time.
 Scenarios were defined based on the inferences made after analysing the data that is currently being returned by the API. List of inferences can be found at the bottom of this ReadMe. 
 
+**Note: Any scenarios that are pending to be automated are tagged to_be_automated
+Some scenarios that are automated but will fail because the way the api works are tagged with ignore
+
 Below is the skeleton of framework folder structure
   src
   |
@@ -73,6 +76,7 @@ Below inferences were drawn by exploring the API using postman.
 - No Authentication. Also, both http and https seem to work
 - API responses are being cached , "CF-CACHE-STATUS" header seem to indicate HIT or MISS. Response times are slightly longer as expected when the cache hit is a MISS. 
 - The list of user emails in /comments response do not match any in /users response ; indicating that any user can make a comment on a post.
+- Noticed that the PUT operation for /comments and /post , when the id is invalid returns a 500 instead of a 404.
 
 
 

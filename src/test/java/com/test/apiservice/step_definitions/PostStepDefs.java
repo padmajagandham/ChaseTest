@@ -240,5 +240,35 @@ public class PostStepDefs {
         assertEquals(list, Arrays.asList(listOfCommentsForAPost));
     }
 
+    /** submits a request to PATCH /post/<postId> endpoint and saves to 'postResponse'**/
+    @When("the user tries to patch above post's title")
+    public void the_user_tries_to_patch_above_post_s_title() {
+        postRequest = PostDataModel.builder()
+                .title("some modified title")
+                .build();
+        log.debug("JSON Req:"+gson.toJson(postRequest));
+        sc.log("JSON Req:"+gson.toJson(postRequest));
+
+        postResponse = postEndpoint
+                .patchAPost(world.getRs(),postRequest,world.getPostDataModel().getId());
+    }
+
+    /** asserts that the PATCH request only updates the specified field and other values remain unchanged**/
+    @Then("the post's must be modified successfully and all other values must remain unchanged")
+    public void the_post_s_must_be_modified_successfully_and_all_other_values_must_remain_unchanged() {
+
+        assertEquals(postResponse.getStatusCode(),200);
+        PostDataModel post = gson.fromJson(postResponse.getBody().asString(), PostDataModel.class);
+
+        log.debug("JSON Req:"+gson.toJson(post));
+        sc.log("JSON Req:"+gson.toJson(post));
+
+        assertEquals(world.getPostDataModel().getId(),post.getId());
+        assertEquals(world.getPostDataModel().getUserId(),post.getUserId());
+        assertEquals(world.getPostDataModel().getBody(),post.getBody());
+        assertEquals(postRequest.getTitle(),post.getTitle());
+    }
+
+
 
 }

@@ -21,6 +21,10 @@ public class Comments {
         return given(rs).get(allCommentsForAPost.replace("<postId>",String.valueOf(postId)));
     }
 
+    public Response getASpecificComment(RequestSpecification rs,int commentId){
+        return given(rs).get(specificComment.replace("<id>",String.valueOf(commentId)));
+    }
+
     public Response getAllComments(RequestSpecification rs){
         return given(rs).get(comments);
     }

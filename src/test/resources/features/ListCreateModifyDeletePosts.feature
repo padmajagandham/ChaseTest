@@ -1,4 +1,4 @@
-@regression @focus
+@regression
 Feature: Create/update/delete/get a Post
 
 #  Assumptions: From the response of GET /posts or GET /posts/<postId>, it can be inferred that a post has a reference to unique userId's
@@ -18,12 +18,20 @@ Feature: Create/update/delete/get a Post
       | 1      | Test some title | Test some body |
     Then the post must be created successfully
 
-#  verifying PUT, can also be modified to verify PATCH
+#  verifying PUT, PUT replaces the entire resource
+  @focus
   Scenario: Verify a user can modify an existing post made by him
     Given a user exists on the social networking site
     And has already posted on the social networking site
     When the user tries to modify above post's title and body
     Then the post must be modified successfully
+
+#    Verifying PATCH, PATCH modifies only the field set in the request and the other values remain unchanged
+  Scenario: Verify a user can modify only a targeted field in a post
+    Given a user exists on the social networking site
+    And has already posted on the social networking site
+    When the user tries to patch above post's title
+    Then the post's must be modified successfully and all other values must remain unchanged
 
   Scenario: Verify a user can delete an existing post made by him
     Given a user exists on the social networking site
@@ -71,11 +79,28 @@ Feature: Create/update/delete/get a Post
       | No user Id field                  |        | fghg               | fghfgh          |
       | userId is a String instead of int | abc    |                    |                 |
 #      tried with a string with 2000 character long , was still able to submit. So depending on the specification below data can be set.
-      | title is > allowed char limit     |        |                    |                 |
-      | body is > allowed char limit      |        |                    |                 |
+      | title is > allowed char limit     | 7      |                    |                 |
+      | body is > allowed char limit      | 7      |                    |                 |
 
-# This cannot be automated currently, as the API does not validate the user Id input and accepts any value given
-#  Scenario: User that does not exist on the social networking site, must not be allowed to make a post i.e. a post must not be accepted with a invalid user id
+# API does not currently support this, as the API does not validate the user Id input and accepts any value given
+#  below test will fail
+  @ignore
+  Scenario: User that does not exist on the social networking site, must not be allowed to make a post i.e. a post must not be accepted with a invalid user id
+    When a user submits a post with below data
+      | userId | title      | body |
+      | 501    | some_title |      |
+    Then the post must not be created
 
 #  API does not currently support this
-#  Scenario: Verify a user cannot delete or modify other users posts i.e. a PUT or PATCH request must not be allowed to modify userId of a post
+  @ignore @to_be_automated
+  Scenario: Verify a user cannot delete or modify other users posts i.e. a PUT or PATCH request must not be allowed to modify userId of a post
+    Given a user exists on the social networking site
+    And has already posted on the social networking site
+    When the user tries to modify above post's userId
+    Then the post must not be modified
+
+  @ignore @to_be_automated
+  Scenario: Verify a when user attempts to modify a post that does not exist using PUT /post/<postId> , it must return a HTTP 404 response
+    When the user tries to modify a post that does not exist targeting PUT /post/<postId>
+    #this is currently failing with a 500 error , when tried from postman
+    Then the request must fail with a HTTP 404 error

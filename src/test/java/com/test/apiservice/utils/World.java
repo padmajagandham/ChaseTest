@@ -1,5 +1,6 @@
 package com.test.apiservice.utils;
 
+import com.test.apiservice.models.CommentDataModel;
 import com.test.apiservice.models.PostDataModel;
 import com.test.apiservice.models.UserDataModel;
 import io.restassured.RestAssured;
@@ -16,6 +17,7 @@ public class World {
     private RequestSpecification rs;
     private UserDataModel userDataModel;
     private PostDataModel postDataModel;
+    private CommentDataModel commentDataModel;
     private Response postResponse;
 
     public World(){
@@ -25,11 +27,6 @@ public class World {
                 .setBaseUri(System.getProperty("baseURL")) //Read this from a command line
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
-                .build();//.log().all();
-//        RestAssured.requestSpecification = new RequestSpecBuilder()
-//                .setBaseUri("https://jsonplaceholder.typicode.com")
-//                .setContentType(ContentType.JSON)
-//                .setAccept(ContentType.JSON)
-//                .build();
+                .build();
     }
 }

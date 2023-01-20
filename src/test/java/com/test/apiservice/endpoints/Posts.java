@@ -44,6 +44,10 @@ public class Posts {
         return given(rs).body(req).put(specificPost.replace("<id>",String.valueOf(id)));
     }
 
+    public Response patchAPost(RequestSpecification rs, PostDataModel req, int id){
+        return given(rs).body(req).patch(specificPost.replace("<id>",String.valueOf(id)));
+    }
+
     public Response deleteAPostMadeByAUser(RequestSpecification rs, int postId){
         return given(rs).delete(specificPost.replace("<id>",String.valueOf(postId)));
     }
