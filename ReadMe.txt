@@ -43,7 +43,7 @@ Made use of cucumber-picocontainers for state sharing between different step def
 **********************
 ****Prerequisites****:
 **********************
-- Make sure Java 11 is installed and JAVA_HOME environment variable set.
+- Make sure Java is installed and JAVA_HOME environment variable set. I have tested against java version "11.0.16.1" .
    Double check by running 'java -version' on command prompt or terminal.
 - Make sure maven is installed, M2_HOME environment variable set and also added to PATH environment variable as %M2_HOME%\bin
    Double check by running 'mvn -version' on command prompt or terminal.
