@@ -97,5 +97,4 @@ public class UserStepDefs {
         //additional assertions must be included for schema when available and db validations
     }
 
-
 }

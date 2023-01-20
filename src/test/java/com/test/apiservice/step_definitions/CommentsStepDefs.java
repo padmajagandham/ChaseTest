@@ -106,7 +106,7 @@ public class CommentsStepDefs {
     @Then("the comment must not be returned successfully")
     public void the_comment_must_not_be_returned_successfully() {
         assertEquals(commentResponse.getStatusCode(),404);
-        System.out.println(commentResponse.getBody().asString());
+        sc.log("JSON Res"+ commentResponse.getBody().asString());
         assertEquals(commentResponse.getBody().asString(),"{}");
     }
 

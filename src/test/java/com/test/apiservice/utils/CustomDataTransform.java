@@ -7,6 +7,9 @@ import java.util.Map;
 
 public class CustomDataTransform {
 
+    /** converts table rows in Gherkin specification to PostDataModel object
+     *so that it is easier to use in step definitions
+     */
     @DataTableType()
     public PostDataModel postReqTransformer(Map<String, String> row) {
         return new PostDataModel(

@@ -18,7 +18,7 @@ Feature: Create/update/delete/get a Post
       | 1      | Test some title | Test some body |
     Then the post must be created successfully
 
-#  verifying PUT, PUT replaces the entire resource
+#  verifying PUT, PUT replaces the entire resource except the unique identifier
   Scenario: Verify a user can modify an existing post made by him
     Given a user exists on the social networking site
     And has already posted on the social networking site
